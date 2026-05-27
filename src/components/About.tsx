@@ -5,11 +5,11 @@ import { personal } from '../data/resume'
 /* Shared section header — exported so other sections can reuse */
 export function SectionHead({ num, title }: { num: string; title: string }) {
   return (
-    <div className="flex items-center gap-5 mb-16">
+    <div className="flex items-center gap-4 md:gap-5 mb-12 md:mb-16">
       <span className="font-mono text-[0.6rem] text-accent tracking-[0.15em] flex-shrink-0">{num}</span>
       <h2
         className="font-display font-bold tracking-tight leading-none flex-shrink-0"
-        style={{ fontSize: 'clamp(2rem,4.5vw,3.2rem)' }}
+        style={{ fontSize: 'clamp(1.8rem,4.5vw,3.2rem)' }}
       >
         {title}
       </h2>
@@ -33,25 +33,24 @@ export default function About() {
 
   return (
     <section id="about" className="bg-base">
-      <div ref={ref} className="max-w-6xl mx-auto px-8 md:px-14 py-28">
+      <div ref={ref} className="max-w-6xl mx-auto px-6 sm:px-8 md:px-14 py-16 md:py-28">
 
         <motion.div variants={reveal(0)} initial="hidden" animate={inView ? 'show' : 'hidden'}>
           <SectionHead num="01" title="About" />
         </motion.div>
 
-        <div className="grid md:grid-cols-[260px_1fr] gap-14 items-start">
+        <div className="grid md:grid-cols-[220px_1fr] lg:grid-cols-[260px_1fr] gap-10 md:gap-14 items-start">
 
           {/* Avatar placeholder */}
           <motion.div variants={reveal(1)} initial="hidden" animate={inView ? 'show' : 'hidden'}>
-            {/* Replace this entire div with <img src="photo.jpg" alt="Harsh Tamakuwala" className="w-full border border-line-vis" /> */}
-            <div className="relative aspect-[1/1.1] bg-card border border-line-vis overflow-hidden">
-              {/* Grid pattern */}
+            <div className="relative aspect-[1/1.1] bg-card border border-line-vis overflow-hidden max-w-[220px] md:max-w-none">
+              {/* Grid pattern — adapts to theme via CSS vars */}
               <div
                 className="absolute inset-0"
                 style={{
                   backgroundImage:
-                    'repeating-linear-gradient(0deg,transparent,transparent 44px,#1C1C1C 44px,#1C1C1C 45px),' +
-                    'repeating-linear-gradient(90deg,transparent,transparent 44px,#1C1C1C 44px,#1C1C1C 45px)',
+                    'repeating-linear-gradient(0deg,transparent,transparent 44px,rgb(var(--c-line-subtle)) 44px,rgb(var(--c-line-subtle)) 45px),' +
+                    'repeating-linear-gradient(90deg,transparent,transparent 44px,rgb(var(--c-line-subtle)) 44px,rgb(var(--c-line-subtle)) 45px)',
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-br from-accent/6 to-transparent" />
@@ -77,7 +76,7 @@ export default function About() {
               variants={reveal(2)}
               initial="hidden"
               animate={inView ? 'show' : 'hidden'}
-              className="font-mono text-[0.86rem] text-text-mid leading-[1.9] space-y-4 mb-10"
+              className="font-mono text-[0.82rem] md:text-[0.86rem] text-text-mid leading-[1.9] space-y-4 mb-8 md:mb-10"
             >
               <p>
                 I'm <strong className="text-text-hi font-bold">Harsh Tamakuwala</strong> — a Software
@@ -107,7 +106,7 @@ export default function About() {
               variants={reveal(3)}
               initial="hidden"
               animate={inView ? 'show' : 'hidden'}
-              className="grid grid-cols-2 gap-x-8 gap-y-5 border-t border-line-subtle pt-8"
+              className="grid grid-cols-2 gap-x-6 md:gap-x-8 gap-y-4 md:gap-y-5 border-t border-line-subtle pt-6 md:pt-8"
             >
               {[
                 { label: 'Location',  value: personal.location },
@@ -119,7 +118,7 @@ export default function About() {
                   <span className="font-mono text-[0.56rem] uppercase tracking-[0.15em] text-accent block mb-1">
                     {label}
                   </span>
-                  <span className="font-mono text-[0.8rem] text-text-hi">{value}</span>
+                  <span className="font-mono text-[0.75rem] md:text-[0.8rem] text-text-hi">{value}</span>
                 </div>
               ))}
             </motion.div>

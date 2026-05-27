@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { ThemeProvider } from './context/ThemeContext'
 import Loader from './components/Loader'
 import Cursor from './components/Cursor'
 import Nav from './components/Nav'
@@ -20,7 +21,7 @@ export default function App() {
   }, [])
 
   return (
-    <>
+    <ThemeProvider>
       {/* Noise texture overlay */}
       <div className="noise" aria-hidden="true" />
 
@@ -43,6 +44,6 @@ export default function App() {
           <Footer />
         </>
       )}
-    </>
+    </ThemeProvider>
   )
 }

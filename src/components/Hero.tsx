@@ -16,10 +16,13 @@ function ParticleCanvas() {
     interface Particle { x: number; y: number; vx: number; vy: number; r: number }
     let pts: Particle[] = []
 
+    // Reduce particle count on mobile/small screens
+    const getCount = () => Math.min(80, Math.floor((window.innerWidth * window.innerHeight) / 12000))
+
     const resize = () => {
       W = canvas.width  = canvas.offsetWidth
       H = canvas.height = canvas.offsetHeight
-      pts = Array.from({ length: 80 }, () => ({
+      pts = Array.from({ length: getCount() }, () => ({
         x:  Math.random() * W,
         y:  Math.random() * H,
         vx: (Math.random() - 0.5) * 0.38,
@@ -137,16 +140,16 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center px-8 md:px-14 overflow-hidden bg-base">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center px-6 sm:px-8 md:px-14 overflow-hidden bg-base pt-20 md:pt-0">
       {/* Particle canvas */}
       <ParticleCanvas />
 
-      {/* Subtle grid */}
+      {/* Subtle grid — adapts to theme via CSS var */}
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-[0.18] pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(#1C1C1C 1px,transparent 1px),linear-gradient(90deg,#1C1C1C 1px,transparent 1px)',
+          backgroundImage: 'linear-gradient(rgb(var(--c-line-subtle)) 1px,transparent 1px),linear-gradient(90deg,rgb(var(--c-line-subtle)) 1px,transparent 1px)',
           backgroundSize: '72px 72px',
           WebkitMaskImage: 'radial-gradient(ellipse 85% 85% at 50% 50%,black 30%,transparent 100%)',
           maskImage:       'radial-gradient(ellipse 85% 85% at 50% 50%,black 30%,transparent 100%)',
@@ -154,10 +157,14 @@ export default function Hero() {
       />
 
       {/* Glow orbs */}
-      <div aria-hidden="true" className="absolute top-[-15%] right-[-8%] w-[650px] h-[650px] rounded-full pointer-events-none"
+      <div
+        aria-hidden="true"
+        className="absolute top-[-15%] right-[-8%] w-[400px] h-[400px] sm:w-[650px] sm:h-[650px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(0,207,255,0.07) 0%, transparent 70%)', filter: 'blur(60px)', animation: 'orbA 14s ease-in-out infinite' }}
       />
-      <div aria-hidden="true" className="absolute bottom-[-12%] left-[12%] w-[420px] h-[420px] rounded-full pointer-events-none"
+      <div
+        aria-hidden="true"
+        className="absolute bottom-[-12%] left-[12%] w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(0,80,255,0.06) 0%, transparent 70%)', filter: 'blur(60px)' }}
       />
 
@@ -165,7 +172,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-[1100px]">
         {/* Eyebrow */}
         <motion.p
-          className="font-mono text-[0.68rem] text-accent tracking-[0.22em] uppercase flex items-center gap-3 mb-7"
+          className="font-mono text-[0.62rem] sm:text-[0.68rem] text-accent tracking-[0.22em] uppercase flex items-center gap-3 mb-5 md:mb-7"
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.15, duration: 0.7, ease: [0.16,1,0.3,1] } }}
         >
@@ -173,10 +180,10 @@ export default function Hero() {
           {personal.eyebrow}
         </motion.p>
 
-        {/* Name — letter stagger */}
+        {/* Name — letter stagger. clamp reduces min to fit phones safely */}
         <h1
-          className="font-display font-black leading-[0.88] tracking-[-0.04em] mb-7 overflow-hidden"
-          style={{ fontSize: 'clamp(3.2rem,10.5vw,9.5rem)' }}
+          className="font-display font-black leading-[0.88] tracking-[-0.04em] mb-5 md:mb-7 overflow-hidden"
+          style={{ fontSize: 'clamp(2.4rem,10.5vw,9.5rem)' }}
         >
           {/* First name */}
           <motion.div variants={container} initial="hidden" animate="show" className="flex overflow-hidden">
@@ -187,7 +194,7 @@ export default function Hero() {
             ))}
           </motion.div>
 
-          {/* Last name — outlined stroke, lights up accent after load */}
+          {/* Last name — outlined stroke, theme-aware */}
           <motion.div
             variants={{ ...container, show: { ...container.show, transition: { ...container.show.transition, delayChildren: 0.62 } } }}
             initial="hidden"
@@ -199,10 +206,7 @@ export default function Hero() {
                 key={i}
                 variants={lastNameLetter}
                 className="inline-block"
-                style={{ WebkitTextStroke: '1.5px #2C2C2C', color: 'transparent' }}
-                onAnimationComplete={() => {
-                  // Light up accent stroke after all letters land
-                }}
+                style={{ WebkitTextStroke: '1.5px var(--c-stroke)', color: 'transparent' }}
               >
                 {c}
               </motion.span>
@@ -212,25 +216,25 @@ export default function Hero() {
 
         {/* Subtitle with typewriter */}
         <motion.div
-          className="font-mono text-[0.88rem] text-text-mid leading-loose mb-10 max-w-[520px]"
+          className="font-mono text-[0.8rem] sm:text-[0.88rem] text-text-mid leading-loose mb-8 md:mb-10 max-w-[520px]"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.88, duration: 0.7, ease: [0.16,1,0.3,1] } }}
         >
           <div className="mb-2">
             <Typewriter />
           </div>
-          <span className="text-[0.8rem] leading-relaxed text-text-mid/80">{personal.tagline}</span>
+          <span className="text-[0.75rem] sm:text-[0.8rem] leading-relaxed text-text-mid/80">{personal.tagline}</span>
         </motion.div>
 
-        {/* CTA */}
+        {/* CTAs */}
         <motion.div
-          className="flex flex-wrap gap-4 items-center"
+          className="flex flex-wrap gap-3 md:gap-4 items-center"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 1.06, duration: 0.7, ease: [0.16,1,0.3,1] } }}
         >
           <button
             onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="font-mono text-[0.7rem] font-bold tracking-[0.1em] uppercase px-8 py-3.5 bg-accent text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_12px_40px_rgba(0,207,255,0.22)]"
+            className="font-mono text-[0.65rem] sm:text-[0.7rem] font-bold tracking-[0.1em] uppercase px-6 sm:px-8 py-3 sm:py-3.5 bg-accent text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_12px_40px_rgba(0,207,255,0.22)]"
             style={{ clipPath: 'polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)' }}
             data-cursor
           >
@@ -238,7 +242,7 @@ export default function Hero() {
           </button>
           <button
             onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="font-mono text-[0.7rem] text-text-mid hover:text-accent transition-colors flex items-center gap-2 group"
+            className="font-mono text-[0.65rem] sm:text-[0.7rem] text-text-mid hover:text-accent transition-colors flex items-center gap-2 group"
             data-cursor
           >
             Get in touch
@@ -251,12 +255,12 @@ export default function Hero() {
       <motion.button
         onClick={goDown}
         aria-label="Scroll down"
-        className="absolute bottom-9 left-8 md:left-14 flex items-center gap-3"
+        className="absolute bottom-7 md:bottom-9 left-6 sm:left-8 md:left-14 flex items-center gap-3"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { delay: 1.4, duration: 0.6 } }}
         data-cursor
       >
-        <div className="w-12 h-px bg-line-vis relative overflow-hidden">
+        <div className="w-10 md:w-12 h-px bg-line-vis relative overflow-hidden">
           <motion.div
             className="absolute inset-0 bg-accent"
             animate={{ x: ['-100%', '110%'] }}
@@ -266,15 +270,15 @@ export default function Hero() {
         <span className="font-mono text-[0.57rem] tracking-[0.2em] uppercase text-text-lo">Scroll</span>
       </motion.button>
 
-      {/* Stats — real metrics */}
+      {/* Stats — real metrics, desktop only */}
       <motion.div
-        className="absolute bottom-9 right-8 md:right-14 hidden md:flex gap-10"
+        className="absolute bottom-7 md:bottom-9 right-8 md:right-14 hidden md:flex gap-8 lg:gap-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { delay: 1.3, duration: 0.6 } }}
       >
         {stats.map(s => (
           <div key={s.label} className="text-right">
-            <span className="font-display font-black text-2xl text-text-hi block leading-none">{s.value}</span>
+            <span className="font-display font-black text-xl lg:text-2xl text-text-hi block leading-none">{s.value}</span>
             <span className="font-mono text-[0.57rem] tracking-[0.1em] uppercase text-text-lo">{s.label}</span>
           </div>
         ))}

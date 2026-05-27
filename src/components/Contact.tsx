@@ -55,7 +55,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="bg-base">
-      <div ref={ref} className="max-w-6xl mx-auto px-8 md:px-14 py-28">
+      <div ref={ref} className="max-w-6xl mx-auto px-6 sm:px-8 md:px-14 py-16 md:py-28">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -64,27 +64,34 @@ export default function Contact() {
           <SectionHead num="05" title="Contact" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-start">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+          {/* Left: headline */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1, duration: 0.8 }}
           >
-            <h3 className="font-display font-black leading-[0.92] tracking-[-0.04em] mb-6"
-              style={{ fontSize: 'clamp(3rem,7vw,5.5rem)' }}>
+            <h3
+              className="font-display font-black leading-[0.92] tracking-[-0.04em] mb-5 md:mb-6"
+              style={{ fontSize: 'clamp(2.2rem,7vw,5.5rem)' }}
+            >
               Let's
-              <span className="block" style={{ WebkitTextStroke: '1.5px #2A2A2A', color: 'transparent' }}>
+              <span
+                className="block"
+                style={{ WebkitTextStroke: '1.5px var(--c-stroke)', color: 'transparent' }}
+              >
                 Build
               </span>
               Together.
             </h3>
-            <p className="font-mono text-[0.82rem] text-text-mid leading-relaxed max-w-sm">
+            <p className="font-mono text-[0.78rem] md:text-[0.82rem] text-text-mid leading-relaxed max-w-sm">
               Open to new grad roles and internships in backend engineering, cloud infrastructure,
               and IoT systems — starting April 2026. If you're building something that operates
               at real scale, I want to hear about it.
             </p>
           </motion.div>
 
+          {/* Right: contact links */}
           <div className="flex flex-col">
             {links.map((l, i) => (
               <motion.a
@@ -96,17 +103,17 @@ export default function Contact() {
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: i * 0.08 + 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ x: 8 }}
-                className="flex items-center gap-4 px-5 py-5 border border-line-subtle border-t-0 first:border-t hover:border-accent hover:bg-accent/5 transition-colors group"
+                className="flex items-center gap-3 md:gap-4 px-4 md:px-5 py-4 md:py-5 border border-line-subtle border-t-0 first:border-t hover:border-accent hover:bg-accent/5 transition-colors group"
                 data-cursor
               >
-                <div className="w-9 h-9 flex-shrink-0 flex items-center justify-center border border-line-vis text-text-mid group-hover:border-accent group-hover:text-accent transition-all">
+                <div className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0 flex items-center justify-center border border-line-vis text-text-mid group-hover:border-accent group-hover:text-accent transition-all">
                   {l.icon}
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <span className="font-mono text-[0.57rem] uppercase tracking-[0.15em] text-text-lo block mb-0.5">{l.cat}</span>
-                  <span className="font-display font-semibold text-[0.88rem] text-text-hi group-hover:text-accent transition-colors">{l.val}</span>
+                  <span className="font-display font-semibold text-[0.82rem] md:text-[0.88rem] text-text-hi group-hover:text-accent transition-colors truncate block">{l.val}</span>
                 </div>
-                <span className="font-mono text-text-lo group-hover:text-accent group-hover:translate-x-1.5 transition-all">→</span>
+                <span className="font-mono text-text-lo group-hover:text-accent group-hover:translate-x-1.5 transition-all flex-shrink-0">→</span>
               </motion.a>
             ))}
           </div>

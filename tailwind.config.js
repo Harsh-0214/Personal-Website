@@ -4,26 +4,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        accent: '#00CFFF',
-        'accent-dim': 'rgba(0,207,255,0.1)',
-        'accent-border': 'rgba(0,207,255,0.25)',
-        base: '#080808',
-        raised: '#0F0F0F',
-        card: '#131313',
-        'card-hover': '#1A1A1A',
-        'line-subtle': '#1C1C1C',
-        'line-vis': '#2A2A2A',
-        'text-hi': '#F2F0EA',
-        'text-mid': '#888',
-        'text-lo': '#444',
+        accent:       'rgb(var(--c-accent) / <alpha-value>)',
+        base:         'rgb(var(--c-base) / <alpha-value>)',
+        raised:       'rgb(var(--c-raised) / <alpha-value>)',
+        card:         'rgb(var(--c-card) / <alpha-value>)',
+        'card-hover': 'rgb(var(--c-card-hover) / <alpha-value>)',
+        'line-subtle':'rgb(var(--c-line-subtle) / <alpha-value>)',
+        'line-vis':   'rgb(var(--c-line-vis) / <alpha-value>)',
+        'text-hi':    'rgb(var(--c-text-hi) / <alpha-value>)',
+        'text-mid':   'rgb(var(--c-text-mid) / <alpha-value>)',
+        'text-lo':    'rgb(var(--c-text-lo) / <alpha-value>)',
       },
       fontFamily: {
         display: ['Syne', 'sans-serif'],
-        mono: ['"Space Mono"', 'monospace'],
+        mono:    ['"Space Mono"', 'monospace'],
       },
       keyframes: {
         beltLeft:  { '0%': { transform: 'translateX(0)' },    '100%': { transform: 'translateX(-50%)' } },
-        beltRight: { '0%': { transform: 'translateX(-50%)' }, '100%': { transform: 'translateX(0)' } },
+        beltRight: { '0%': { transform: 'translateX(-50%)' }, '100%': { transform: 'translateX(0)' }   },
       },
       animation: {
         'belt-l': 'beltLeft 30s linear infinite',

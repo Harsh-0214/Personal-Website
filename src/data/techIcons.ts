@@ -1,0 +1,96 @@
+import {
+  SiPython, SiJavascript, SiCplusplus, SiKotlin, SiPhp, SiGnubash,
+  SiNodedotjs, SiFastapi, SiDjango, SiSpringboot,
+  SiGooglecloud, SiGooglebigquery, SiGoogledataflow, SiGooglepubsub,
+  SiDocker, SiKubernetes, SiJenkins, SiGithubactions, SiTerraform, SiAnsible,
+  SiPostgresql, SiMysql, SiMongodb,
+  SiGit, SiLinux, SiPostman, SiJira, SiFigma, SiGrafana, SiPrometheus, SiCisco,
+} from 'react-icons/si'
+import { FaAws } from 'react-icons/fa'
+import { DiJava } from 'react-icons/di'
+import type { IconType } from 'react-icons'
+
+/** Maps a skill/technology name to its react-icon component */
+export const techIconMap: Record<string, IconType> = {
+  // Languages
+  'Python':         SiPython,
+  'Java':           DiJava,
+  'JavaScript':     SiJavascript,
+  'C++':            SiCplusplus,
+  'C':              SiCplusplus,
+  'Kotlin':         SiKotlin,
+  'PHP':            SiPhp,
+  'Bash':           SiGnubash,
+  // Backend
+  'FastAPI':        SiFastapi,
+  'Django':         SiDjango,
+  'Node.js':        SiNodedotjs,
+  'Spring Boot':    SiSpringboot,
+  // Cloud & DevOps
+  'AWS':            FaAws,
+  'GCP':            SiGooglecloud,
+  'GCP Pub/Sub':    SiGooglepubsub,
+  'Pub/Sub':        SiGooglepubsub,
+  'BigQuery':       SiGooglebigquery,
+  'Dataflow':       SiGoogledataflow,
+  'Docker':         SiDocker,
+  'Kubernetes':     SiKubernetes,
+  'Jenkins':        SiJenkins,
+  'GitHub Actions': SiGithubactions,
+  'Terraform':      SiTerraform,
+  'Ansible':        SiAnsible,
+  // Databases
+  'PostgreSQL':     SiPostgresql,
+  'MySQL':          SiMysql,
+  'MongoDB':        SiMongodb,
+  // Tools
+  'Git':            SiGit,
+  'Linux':          SiLinux,
+  'Postman':        SiPostman,
+  'Jira':           SiJira,
+  'Figma':          SiFigma,
+  'Grafana':        SiGrafana,
+  'Prometheus':     SiPrometheus,
+  'Cisco':          SiCisco,
+  'Cisco APIs':     SiCisco,
+}
+
+/** Brand accent colors (used for icon tint on hover) */
+export const techColorMap: Record<string, string> = {
+  'Python':         '#3776AB',
+  'Java':           '#ED8B00',
+  'JavaScript':     '#F7DF1E',
+  'C++':            '#00599C',
+  'C':              '#A8B9CC',
+  'Kotlin':         '#7F52FF',
+  'PHP':            '#777BB4',
+  'Bash':           '#4EAA25',
+  'FastAPI':        '#009688',
+  'Django':         '#0C4B33',
+  'Node.js':        '#339933',
+  'Spring Boot':    '#6DB33F',
+  'AWS':            '#FF9900',
+  'GCP':            '#4285F4',
+  'GCP Pub/Sub':    '#4285F4',
+  'Pub/Sub':        '#4285F4',
+  'BigQuery':       '#4285F4',
+  'Dataflow':       '#4285F4',
+  'Docker':         '#2496ED',
+  'Kubernetes':     '#326CE5',
+  'Jenkins':        '#D33833',
+  'GitHub Actions': '#2088FF',
+  'Terraform':      '#7B42BC',
+  'Ansible':        '#EE0000',
+  'PostgreSQL':     '#4169E1',
+  'MySQL':          '#4479A1',
+  'MongoDB':        '#47A248',
+  'Git':            '#F05032',
+  'Linux':          '#FCC624',
+  'Postman':        '#FF6C37',
+  'Jira':           '#0052CC',
+  'Figma':          '#F24E1E',
+  'Grafana':        '#F46800',
+  'Prometheus':     '#E6522C',
+  'Cisco':          '#1BA0D7',
+  'Cisco APIs':     '#1BA0D7',
+}

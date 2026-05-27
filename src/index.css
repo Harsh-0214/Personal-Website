@@ -2,32 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design-token CSS variables ─────────────────────────────────────
+   Values are bare R G B channels so Tailwind opacity modifiers work:
+   e.g. bg-accent/10 → rgb(var(--c-accent) / 0.1)
+──────────────────────────────────────────────────────────────────── */
+:root {
+  /* Dark theme (default) */
+  --c-accent:       0 207 255;
+  --c-base:         8 8 8;
+  --c-raised:       15 15 15;
+  --c-card:         19 19 19;
+  --c-card-hover:   26 26 26;
+  --c-line-subtle:  28 28 28;
+  --c-line-vis:     42 42 42;
+  --c-text-hi:      242 240 234;
+  --c-text-mid:     136 136 136;
+  --c-text-lo:      68 68 68;
+  /* Used for outlined/stroked text where hex is required */
+  --c-stroke: #2C2C2C;
+}
+
+/* Light theme — toggled by adding class="light" to <html> */
+html.light {
+  --c-base:         250 250 250;
+  --c-raised:       242 240 234;
+  --c-card:         255 255 255;
+  --c-card-hover:   245 245 245;
+  --c-line-subtle:  228 228 228;
+  --c-line-vis:     208 208 208;
+  --c-text-hi:      12 12 12;
+  --c-text-mid:     85 85 85;
+  --c-text-lo:      160 160 160;
+  --c-stroke: #AAAAAA;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
-  background: #080808;
-  color: #F2F0EA;
+  background: rgb(var(--c-base));
+  color: rgb(var(--c-text-hi));
   font-family: 'Space Mono', monospace;
   overflow-x: hidden;
-  cursor: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Only hide cursor on devices with a fine pointer (mouse/trackpad) */
+@media (pointer: fine) {
+  body { cursor: none; }
 }
 
 ::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: #080808; }
-::-webkit-scrollbar-thumb { background: #00CFFF; }
+::-webkit-scrollbar-track { background: rgb(var(--c-base)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--c-accent)); }
 
 @layer utilities {
-  .text-stroke { -webkit-text-stroke: 1.5px #2A2A2A; color: transparent; }
-  .text-stroke-accent { -webkit-text-stroke: 1.5px #00CFFF; color: transparent; }
+  .text-stroke       { -webkit-text-stroke: 1.5px var(--c-stroke); color: transparent; }
+  .text-stroke-accent { -webkit-text-stroke: 1.5px rgb(var(--c-accent)); color: transparent; }
+
   .glass {
-    background: rgba(20,20,20,0.6);
+    background: rgba(20, 20, 20, 0.7);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
-  .gradient-border {
-    position: relative;
+  html.light .glass {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
+
+  .gradient-border { position: relative; }
   .gradient-border::before {
     content: '';
     position: absolute;
@@ -39,6 +82,7 @@ body {
     mask-composite: exclude;
     pointer-events: none;
   }
+
   .noise {
     position: fixed;
     inset: 0;
@@ -47,5 +91,9 @@ body {
     opacity: 0.025;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     mix-blend-mode: screen;
+  }
+  html.light .noise {
+    mix-blend-mode: multiply;
+    opacity: 0.04;
   }
 }
