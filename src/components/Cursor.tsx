@@ -4,7 +4,7 @@ export default function Cursor() {
   const dotRef  = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState(false)
-  const pos = useRef({ x: 0, y: 0 })
+  const pos  = useRef({ x: 0, y: 0 })
   const ring = useRef({ x: 0, y: 0 })
   const raf  = useRef<number>(0)
 
@@ -20,8 +20,8 @@ export default function Cursor() {
     }
 
     const lerp = () => {
-      ring.current.x += (pos.current.x - ring.current.x) * 0.12
-      ring.current.y += (pos.current.y - ring.current.y) * 0.12
+      ring.current.x += (pos.current.x - ring.current.x) * 0.1
+      ring.current.y += (pos.current.y - ring.current.y) * 0.1
       if (ringRef.current) {
         ringRef.current.style.left = ring.current.x + 'px'
         ringRef.current.style.top  = ring.current.y + 'px'
@@ -32,12 +32,16 @@ export default function Cursor() {
 
     document.addEventListener('mousemove', onMove)
 
-    const addHover = () => setHovered(true)
-    const rmHover  = () => setHovered(false)
-    document.querySelectorAll('a,button,[data-cursor]').forEach(el => {
-      el.addEventListener('mouseenter', addHover)
-      el.addEventListener('mouseleave', rmHover)
-    })
+    const enter = () => setHovered(true)
+    const leave = () => setHovered(false)
+    // Re-query on each mount so dynamically-added elements are covered
+    const bindHover = () => {
+      document.querySelectorAll('a,button,[data-cursor]').forEach(el => {
+        el.addEventListener('mouseenter', enter)
+        el.addEventListener('mouseleave', leave)
+      })
+    }
+    bindHover()
 
     return () => {
       document.removeEventListener('mousemove', onMove)
@@ -47,15 +51,17 @@ export default function Cursor() {
 
   return (
     <>
+      {/* Dot — snaps to cursor */}
       <div
         ref={dotRef}
-        className="fixed z-[9998] pointer-events-none -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent transition-all duration-150"
-        style={{ width: hovered ? 12 : 6, height: hovered ? 12 : 6 }}
+        className="fixed z-[9998] pointer-events-none -translate-x-1/2 -translate-y-1/2 rounded-full bg-rust transition-all duration-100"
+        style={{ width: hovered ? 10 : 5, height: hovered ? 10 : 5, opacity: hovered ? 0.7 : 1 }}
       />
+      {/* Ring — lags behind cursor */}
       <div
         ref={ringRef}
-        className="fixed z-[9997] pointer-events-none -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/40 transition-all duration-200"
-        style={{ width: hovered ? 44 : 30, height: hovered ? 44 : 30, opacity: hovered ? 0.6 : 1 }}
+        className="fixed z-[9997] pointer-events-none -translate-x-1/2 -translate-y-1/2 rounded-full border border-rust/30 transition-all duration-200"
+        style={{ width: hovered ? 40 : 28, height: hovered ? 40 : 28 }}
       />
     </>
   )

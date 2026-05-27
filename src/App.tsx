@@ -16,14 +16,14 @@ export default function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2200)
+    const timer = setTimeout(() => setLoading(false), 1800)
     return () => clearTimeout(timer)
   }, [])
 
   return (
     <ThemeProvider>
-      {/* Noise texture overlay */}
-      <div className="noise" aria-hidden="true" />
+      {/* Paper grain texture */}
+      <div className="grain" aria-hidden="true" />
 
       <AnimatePresence mode="wait">
         {loading && <Loader key="loader" />}

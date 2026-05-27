@@ -34,7 +34,7 @@ export default function Nav() {
   const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
-    const onScroll = () => setStuck(window.scrollY > 40)
+    const onScroll = () => setStuck(window.scrollY > 50)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -56,36 +56,34 @@ export default function Nav() {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-[800] flex items-center justify-between px-6 sm:px-8 md:px-14 py-4 md:py-5 transition-all duration-300 ${
-        stuck ? 'bg-base/90 backdrop-blur-xl border-b border-line-subtle' : ''
+      className={`fixed top-0 left-0 right-0 z-[800] flex items-center justify-between px-6 sm:px-8 md:px-14 py-5 transition-all duration-400 ${
+        stuck ? 'glass' : ''
       }`}
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0, transition: { delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] } }}
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0, transition: { delay: 0.1, duration: 0.7, ease: [0.25, 1, 0.5, 1] } }}
     >
-      {/* Logo */}
-      <button onClick={() => go('#hero')} className="font-display font-black text-base tracking-widest text-text-hi" data-cursor>
-        HT<span className="text-accent">.</span>
+      {/* Wordmark */}
+      <button
+        onClick={() => go('#hero')}
+        className="font-display italic text-ink text-xl leading-none select-none"
+        data-cursor
+      >
+        HT<span className="text-rust not-italic">.</span>
       </button>
 
-      {/* Desktop links + theme toggle */}
+      {/* Desktop nav */}
       <div className="hidden md:flex items-center gap-8">
-        <ul className="flex gap-8 list-none">
+        <ul className="flex gap-7 list-none">
           {links.map(l => (
             <li key={l.href}>
               <button
                 onClick={() => go(l.href)}
                 data-cursor
-                className={`font-mono text-[0.68rem] tracking-widest uppercase relative pb-0.5 transition-colors duration-200 ${
-                  active === l.href ? 'text-accent' : 'text-text-mid hover:text-accent'
+                className={`font-sans text-[0.78rem] relative pb-0.5 transition-colors duration-200 underline-grow ${
+                  active === l.href ? 'text-rust' : 'text-mid hover:text-ink'
                 }`}
               >
                 {l.label}
-                {active === l.href && (
-                  <motion.span
-                    layoutId="nav-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-px bg-accent"
-                  />
-                )}
               </button>
             </li>
           ))}
@@ -95,43 +93,43 @@ export default function Nav() {
         <button
           onClick={toggleTheme}
           data-cursor
-          aria-label="Toggle light/dark mode"
-          className="w-8 h-8 flex items-center justify-center border border-line-vis text-text-mid hover:border-accent hover:text-accent transition-all duration-200"
+          aria-label="Toggle theme"
+          className="text-dim hover:text-ink transition-colors"
         >
           {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
         </button>
       </div>
 
-      {/* Mobile right: theme toggle + hamburger */}
-      <div className="md:hidden flex items-center gap-3">
+      {/* Mobile: theme toggle + hamburger */}
+      <div className="md:hidden flex items-center gap-4">
         <button
           onClick={toggleTheme}
-          aria-label="Toggle light/dark mode"
-          className="w-8 h-8 flex items-center justify-center border border-line-vis text-text-mid"
+          aria-label="Toggle theme"
+          className="text-dim hover:text-ink transition-colors"
         >
           {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
         </button>
 
         <button
-          className="relative z-[810] flex flex-col gap-[5px] p-1.5"
+          className="flex flex-col gap-[5px] p-1 relative z-[810]"
           onClick={() => setOpen(o => !o)}
-          aria-label="Toggle navigation"
+          aria-label="Toggle menu"
           data-cursor
         >
           <motion.span
             animate={{ rotate: open ? 45 : 0, y: open ? 8 : 0 }}
-            transition={{ duration: 0.25 }}
-            className="block w-5 h-px bg-text-hi origin-center"
+            transition={{ duration: 0.22 }}
+            className="block w-5 h-px bg-ink origin-center"
           />
           <motion.span
             animate={{ opacity: open ? 0 : 1 }}
-            transition={{ duration: 0.2 }}
-            className="block w-5 h-px bg-text-hi"
+            transition={{ duration: 0.18 }}
+            className="block w-5 h-px bg-ink"
           />
           <motion.span
             animate={{ rotate: open ? -45 : 0, y: open ? -8 : 0 }}
-            transition={{ duration: 0.25 }}
-            className="block w-5 h-px bg-text-hi origin-center"
+            transition={{ duration: 0.22 }}
+            className="block w-5 h-px bg-ink origin-center"
           />
         </button>
       </div>
@@ -143,16 +141,16 @@ export default function Nav() {
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
-            className="fixed inset-0 bg-raised flex flex-col justify-center px-8 gap-7 md:hidden border-l border-line-subtle"
+            transition={{ ease: [0.25, 1, 0.5, 1], duration: 0.42 }}
+            className="fixed inset-0 bg-bg flex flex-col justify-center px-10 gap-8 md:hidden border-l border-line"
           >
             {links.map((l, i) => (
               <motion.button
                 key={l.href}
                 onClick={() => go(l.href)}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0, transition: { delay: i * 0.05 + 0.1 } }}
-                className="font-display text-3xl font-bold text-left text-text-mid hover:text-accent transition-colors"
+                initial={{ opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0, transition: { delay: i * 0.06 + 0.08 } }}
+                className="font-display italic text-4xl text-left text-mid hover:text-rust transition-colors"
                 data-cursor
               >
                 {l.label}

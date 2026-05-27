@@ -2,28 +2,30 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { personal } from '../data/resume'
 
-/* Shared section header — exported so other sections can reuse */
+/* Shared editorial section header used by all sections */
 export function SectionHead({ num, title }: { num: string; title: string }) {
   return (
-    <div className="flex items-center gap-4 md:gap-5 mb-12 md:mb-16">
-      <span className="font-mono text-[0.6rem] text-accent tracking-[0.15em] flex-shrink-0">{num}</span>
+    <div className="mb-14 md:mb-20">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-10 h-px bg-line flex-shrink-0" />
+        <span className="font-sans text-[0.62rem] text-dim uppercase tracking-[0.22em]">{num}</span>
+      </div>
       <h2
-        className="font-display font-bold tracking-tight leading-none flex-shrink-0"
-        style={{ fontSize: 'clamp(1.8rem,4.5vw,3.2rem)' }}
+        className="font-display text-ink leading-[0.9]"
+        style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)' }}
       >
         {title}
       </h2>
-      <div className="flex-1 h-px bg-line-subtle" />
     </div>
   )
 }
 
-const reveal = (i: number) => ({
-  hidden: { opacity: 0, y: 28 },
-  show: {
+const reveal = (delay = 0) => ({
+  initial: { opacity: 0, y: 28 },
+  animate: {
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.13, duration: 0.85, ease: [0.16, 1, 0.3, 1] as number[] },
+    transition: { delay, duration: 0.8, ease: [0.25, 1, 0.5, 1] },
   },
 })
 
@@ -32,93 +34,117 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="about" className="bg-base">
+    <section id="about" className="bg-bg">
       <div ref={ref} className="max-w-6xl mx-auto px-6 sm:px-8 md:px-14 py-16 md:py-28">
 
-        <motion.div variants={reveal(0)} initial="hidden" animate={inView ? 'show' : 'hidden'}>
+        <motion.div
+          variants={{ hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+        >
           <SectionHead num="01" title="About" />
         </motion.div>
 
-        <div className="grid md:grid-cols-[220px_1fr] lg:grid-cols-[260px_1fr] gap-10 md:gap-14 items-start">
+        <div className="grid md:grid-cols-[240px_1fr] lg:grid-cols-[280px_1fr] gap-10 md:gap-16 items-start">
 
-          {/* Avatar placeholder */}
-          <motion.div variants={reveal(1)} initial="hidden" animate={inView ? 'show' : 'hidden'}>
-            <div className="relative aspect-[1/1.1] bg-card border border-line-vis overflow-hidden max-w-[220px] md:max-w-none">
-              {/* Grid pattern — adapts to theme via CSS vars */}
+          {/* Left: Avatar + quick facts */}
+          <motion.div {...reveal(0.1)} animate={inView ? reveal(0.1).animate : reveal(0.1).initial}>
+            {/* Photo placeholder */}
+            <div className="relative aspect-[3/4] bg-surface border border-line overflow-hidden mb-6 max-w-[220px] md:max-w-none">
+              {/* Warm grid */}
               <div
-                className="absolute inset-0"
+                className="absolute inset-0 opacity-50"
                 style={{
                   backgroundImage:
-                    'repeating-linear-gradient(0deg,transparent,transparent 44px,rgb(var(--c-line-subtle)) 44px,rgb(var(--c-line-subtle)) 45px),' +
-                    'repeating-linear-gradient(90deg,transparent,transparent 44px,rgb(var(--c-line-subtle)) 44px,rgb(var(--c-line-subtle)) 45px)',
+                    'repeating-linear-gradient(0deg,transparent,transparent 44px,rgb(var(--c-line)) 44px,rgb(var(--c-line)) 45px),' +
+                    'repeating-linear-gradient(90deg,transparent,transparent 44px,rgb(var(--c-line)) 44px,rgb(var(--c-line)) 45px)',
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/6 to-transparent" />
               {/* Corner brackets */}
-              <div className="absolute top-2.5 left-2.5  w-3.5 h-3.5 border-t border-l border-accent" />
-              <div className="absolute bottom-2.5 right-2.5 w-3.5 h-3.5 border-b border-r border-accent" />
-              {/* Silhouette */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-20 h-20 opacity-[0.06]" fill="none" stroke="currentColor" strokeWidth={0.6}>
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
+              <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-rust/50" />
+              <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-rust/50" />
+              {/* Placeholder silhouette */}
+              <div className="absolute inset-0 flex items-end justify-center pb-6">
+                <svg viewBox="0 0 24 24" className="w-20 h-20 text-line" fill="currentColor">
+                  <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
                 </svg>
               </div>
-              <span className="absolute bottom-3 left-3.5 font-mono text-[0.55rem] text-accent/45 tracking-wider z-10">
-                // photo.jpg
+              <span className="absolute bottom-3 left-3 font-sans text-[0.55rem] text-dim/60 tracking-wider">
+                photo.jpg
               </span>
+            </div>
+
+            {/* Quick facts */}
+            <div className="space-y-3">
+              {[
+                { label: 'Based in',   value: personal.location },
+                { label: 'Status',     value: personal.status },
+                { label: 'Graduating', value: personal.graduation },
+              ].map(({ label, value }) => (
+                <div key={label} className="border-t border-line-faint pt-3">
+                  <span className="font-sans text-[0.58rem] uppercase tracking-[0.2em] text-dim block mb-0.5">{label}</span>
+                  <span className="font-sans text-[0.82rem] text-ink">{value}</span>
+                </div>
+              ))}
             </div>
           </motion.div>
 
-          {/* Bio */}
+          {/* Right: Bio */}
           <div>
+            {/* Pull-quote */}
+            <motion.p
+              {...reveal(0.2)}
+              animate={inView ? reveal(0.2).animate : reveal(0.2).initial}
+              className="font-display italic text-ink leading-[1.3] mb-8"
+              style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)' }}
+            >
+              "I build systems that hold up under real-world load — from IoT telemetry pipelines on GCP
+              to enterprise network automation at CBC News."
+            </motion.p>
+
+            {/* Body paragraphs */}
             <motion.div
-              variants={reveal(2)}
-              initial="hidden"
-              animate={inView ? 'show' : 'hidden'}
-              className="font-mono text-[0.82rem] md:text-[0.86rem] text-text-mid leading-[1.9] space-y-4 mb-8 md:mb-10"
+              {...reveal(0.32)}
+              animate={inView ? reveal(0.32).animate : reveal(0.32).initial}
+              className="font-sans text-[0.9rem] text-mid leading-[1.85] space-y-4 mb-10"
             >
               <p>
-                I'm <strong className="text-text-hi font-bold">Harsh Tamakuwala</strong> — a Software
-                Engineering student at{' '}
-                <strong className="text-text-hi font-bold">Ontario Tech University</strong> specialising in
-                IoT Systems, graduating April 2026. I care about software that operates at infrastructure
-                scale, where reliability and automation aren't optional — they're the baseline.
+                I'm <strong className="font-semibold text-ink">Harsh Tamakuwala</strong> — a Software
+                Engineering student at <strong className="font-semibold text-ink">Ontario Tech University</strong>,
+                specialising in IoT Systems, graduating April 2026. I care deeply about software that
+                operates at infrastructure scale, where reliability and automation aren't optional —
+                they're the baseline.
               </p>
               <p>
-                Most recently I interned at <strong className="text-text-hi font-bold">CBC News</strong> as
-                a Network Engineering Intern, where I built Python automation that cut infrastructure
-                deployment time by <strong className="text-accent font-bold">80%</strong>, tracked inventory
-                across <strong className="text-accent font-bold">1000+ network devices</strong>, and surfaced{' '}
-                <strong className="text-accent font-bold">$8M+ in cost savings</strong> on a $44M Arista
+                Most recently I interned at <strong className="font-semibold text-ink">CBC News</strong> as
+                a Network Engineering Intern. I built Python automation that cut deployment time by{' '}
+                <strong className="font-semibold text-rust">80%</strong>, tracked inventory across{' '}
+                <strong className="font-semibold text-rust">1000+ network devices</strong>, and surfaced{' '}
+                <strong className="font-semibold text-rust">$8M+ in cost savings</strong> on a $44M Arista
                 infrastructure project.
               </p>
               <p>
                 I'm most comfortable at the backend and cloud layer — designing data pipelines,
                 containerised services, and the kind of internal tooling that makes engineering teams
-                dramatically more productive. When I'm not shipping, I'm chasing problems I don't have
-                the answer to yet.
+                dramatically more productive.
               </p>
             </motion.div>
 
-            {/* Meta grid */}
+            {/* Education + focus */}
             <motion.div
-              variants={reveal(3)}
-              initial="hidden"
-              animate={inView ? 'show' : 'hidden'}
-              className="grid grid-cols-2 gap-x-6 md:gap-x-8 gap-y-4 md:gap-y-5 border-t border-line-subtle pt-6 md:pt-8"
+              {...reveal(0.44)}
+              animate={inView ? reveal(0.44).animate : reveal(0.44).initial}
+              className="grid grid-cols-2 gap-6 border-t border-line pt-7"
             >
               {[
-                { label: 'Location',  value: personal.location },
-                { label: 'Status',    value: personal.status },
-                { label: 'Focus',     value: 'Backend / Cloud / IoT' },
-                { label: 'Education', value: `${personal.education}, ${personal.school}` },
+                { label: 'Degree',  value: personal.education },
+                { label: 'School',  value: personal.school },
+                { label: 'Focus',   value: 'Backend · Cloud · IoT' },
+                { label: 'Contact', value: personal.email },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <span className="font-mono text-[0.56rem] uppercase tracking-[0.15em] text-accent block mb-1">
-                    {label}
-                  </span>
-                  <span className="font-mono text-[0.75rem] md:text-[0.8rem] text-text-hi">{value}</span>
+                  <span className="font-sans text-[0.58rem] uppercase tracking-[0.2em] text-dim block mb-1">{label}</span>
+                  <span className="font-sans text-[0.84rem] text-ink">{value}</span>
                 </div>
               ))}
             </motion.div>
