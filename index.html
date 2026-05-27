@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- PLACEHOLDER: Update page title with your real name -->
-  <title>Your Name — Developer</title>
-  <meta name="description" content="Full-stack developer building thoughtful software with craft and precision." />
+  <title>Harsh Tamakuwala — Software Engineer</title>
+  <meta name="description" content="Software Engineer specialising in backend systems, cloud infrastructure, and IoT. Ontario Tech University, graduating April 2026." />
 
   <!-- ============================================================
        FONTS — Syne (editorial display) + Space Mono (technical body)
-       Chosen deliberately: distinctive, non-generic, high craft signal
        ============================================================ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -75,7 +73,7 @@
 
 
     /* ================================================================
-       NOISE OVERLAY — Film-grain texture via SVG filter
+       NOISE OVERLAY — animated film-grain via canvas (see JS)
        ================================================================ */
     #noise-canvas {
       position: fixed;
@@ -185,7 +183,7 @@
     .nav-list {
       list-style: none;
       display: flex;
-      gap: 3rem;
+      gap: 2.5rem;
     }
     .nav-list a {
       font-family: var(--f-mono);
@@ -328,7 +326,7 @@
       50%      { transform: translate(18px, 18px); }
     }
 
-    /* Grid overlay — very subtle */
+    /* Subtle grid overlay */
     .hero-grid {
       position: absolute;
       inset: 0;
@@ -368,7 +366,7 @@
 
     .hero-name {
       font-family: var(--f-display);
-      font-size: clamp(4rem, 11vw, 10rem);
+      font-size: clamp(3.5rem, 10vw, 9.5rem);
       font-weight: 800;
       line-height: 0.92;
       letter-spacing: -0.035em;
@@ -392,7 +390,7 @@
       font-size: clamp(0.78rem, 1.3vw, 0.9rem);
       color: var(--text-mid);
       line-height: 1.85;
-      max-width: 460px;
+      max-width: 500px;
       margin-bottom: 3rem;
 
       opacity: 0;
@@ -408,7 +406,7 @@
       animation: fadeUp 0.8s var(--ease-out-expo) forwards 0.95s;
     }
 
-    /* Primary CTA button — angled-corner style */
+    /* Primary CTA — angled-corner clip */
     .btn-primary {
       display: inline-block;
       padding: 0.9rem 2.2rem;
@@ -480,7 +478,7 @@
       color: var(--text-lo);
     }
 
-    /* Hero stats bottom-right */
+    /* Hero stats — real metrics from resume */
     .hero-stats {
       position: absolute;
       bottom: 2.5rem;
@@ -536,7 +534,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* Grid lines inside avatar */
     .avatar-box::before {
       content: '';
       position: absolute; inset: 0;
@@ -544,13 +541,11 @@
         repeating-linear-gradient(0deg, transparent, transparent 44px, var(--line-subtle) 44px, var(--line-subtle) 45px),
         repeating-linear-gradient(90deg, transparent, transparent 44px, var(--line-subtle) 44px, var(--line-subtle) 45px);
     }
-    /* Accent gradient top-left */
     .avatar-box::after {
       content: '';
       position: absolute; inset: 0;
       background: radial-gradient(ellipse at 0% 0%, var(--accent-sub) 0%, transparent 65%);
     }
-    /* Corner brackets */
     .avatar-corner {
       position: absolute;
       width: 18px; height: 18px;
@@ -569,8 +564,6 @@
       letter-spacing: 0.1em;
       z-index: 1;
     }
-
-    /* The silhouette icon inside avatar */
     .avatar-icon {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
@@ -578,7 +571,7 @@
     }
     .avatar-icon svg { opacity: 0.08; width: 90px; }
 
-    /* USAGE: swap .avatar-box content with an actual <img> once you have a photo */
+    /* SWAP .avatar-box for <img src="photo.jpg" alt="Harsh Tamakuwala" /> once you have a photo */
 
     .about-text-wrap { padding-top: 0.5rem; }
 
@@ -599,7 +592,6 @@
       border-top: 1px solid var(--line-subtle);
       padding-top: 2rem;
     }
-    .meta-item {}
     .meta-label {
       font-family: var(--f-mono);
       font-size: 0.6rem;
@@ -617,6 +609,107 @@
 
 
     /* ================================================================
+       EXPERIENCE
+       ================================================================ */
+    #experience { background: var(--bg-base); }
+    #experience .section-wrap { padding-top: 0; }
+
+    .exp-list { display: flex; flex-direction: column; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      padding: 2.75rem 0;
+      border-bottom: 1px solid var(--line-subtle);
+    }
+    .exp-item:first-child { border-top: 1px solid var(--line-subtle); }
+
+    .exp-meta { padding-top: 0.1rem; }
+
+    .exp-role {
+      font-family: var(--f-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.35rem;
+      color: var(--text-hi);
+      line-height: 1.2;
+    }
+    .exp-company {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .exp-when, .exp-where {
+      font-family: var(--f-mono);
+      font-size: 0.62rem;
+      color: var(--text-lo);
+      letter-spacing: 0.06em;
+      display: block;
+    }
+    .exp-when { margin-bottom: 0.15rem; }
+
+    .exp-bullets {
+      list-style: none;
+      padding-top: 0.2rem;
+    }
+    .exp-bullets li {
+      font-family: var(--f-mono);
+      font-size: 0.79rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      padding: 0.3rem 0 0.3rem 1.3rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: var(--f-mono);
+    }
+    .exp-bullets li strong { color: var(--text-hi); font-weight: 700; }
+
+    /* Cert badge */
+    .cert-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line-subtle);
+    }
+    .cert-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--accent-border);
+      background: var(--accent-sub);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--f-mono);
+      font-size: 0.55rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+    .cert-name {
+      font-family: var(--f-display);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-hi);
+    }
+    .cert-year {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      color: var(--text-lo);
+      letter-spacing: 0.08em;
+      margin-left: auto;
+    }
+
+
+    /* ================================================================
        SKILLS — full-bleed marquee + category grid
        ================================================================ */
     #skills {
@@ -627,7 +720,6 @@
       padding-bottom: 2rem;
     }
 
-    /* Marquee container */
     .marquee-stage {
       border-top: 1px solid var(--line-subtle);
       border-bottom: 1px solid var(--line-subtle);
@@ -644,8 +736,8 @@
       gap: 0;
       will-change: transform;
     }
-    .mrow-l .marquee-belt { animation: beltLeft 28s linear infinite; }
-    .mrow-r .marquee-belt { animation: beltRight 22s linear infinite; }
+    .mrow-l .marquee-belt { animation: beltLeft 30s linear infinite; }
+    .mrow-r .marquee-belt { animation: beltRight 24s linear infinite; }
     @keyframes beltLeft  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @keyframes beltRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
@@ -673,7 +765,6 @@
     .skill-chip.hi { color: var(--text-mid); }
     .skill-chip.hi .pip { background: var(--accent); }
 
-    /* Category cells below marquee */
     .skills-cells {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -728,13 +819,12 @@
       border-bottom: 1px solid var(--line-subtle);
       display: flex;
       flex-direction: column;
-      gap: 0;
       overflow: hidden;
       background: var(--bg-card);
       transition: background 0.3s;
       cursor: default;
     }
-    /* Top accent bar that sweeps in on hover */
+    /* Top accent bar sweeps in on hover */
     .project-card::before {
       content: '';
       position: absolute;
@@ -769,7 +859,7 @@
     }
     .card-title {
       font-family: var(--f-display);
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 1.15;
@@ -927,7 +1017,7 @@
     footer a:hover { color: var(--accent); }
 
     /* ================================================================
-       MOBILE NAV DRAWER
+       RESPONSIVE
        ================================================================ */
     @media (max-width: 860px) {
       #nav { padding: 1.25rem 1.5rem; }
@@ -942,7 +1032,7 @@
         flex-direction: column;
         justify-content: center;
         padding: 3rem 2.5rem;
-        gap: 2.25rem;
+        gap: 2rem;
         transform: translateX(100%);
         transition: transform 0.4s var(--ease-out-expo);
       }
@@ -951,15 +1041,17 @@
 
       .nav-burger { display: flex; z-index: 810; }
 
-      /* Hero */
       #hero { padding: 7rem 1.5rem 5rem; }
       .hero-stats { display: none; }
       .hero-scroll { left: 1.5rem; }
 
-      /* Layout */
       .section-wrap { padding: 5rem 1.5rem; }
+      #experience .section-wrap { padding-top: 0; }
+
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .avatar-box { max-width: 200px; }
+
+      .exp-item { grid-template-columns: 1fr; gap: 1.25rem; }
 
       #skills .section-wrap { padding-bottom: 0; }
       .skills-cells { grid-template-columns: 1fr 1fr; }
@@ -972,32 +1064,28 @@
     }
 
     @media (max-width: 520px) {
-      .hero-name { font-size: clamp(3rem, 16vw, 5rem); }
+      .hero-name { font-size: clamp(2.8rem, 14vw, 5rem); }
       .skills-cells { grid-template-columns: 1fr; }
       .about-meta { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; align-items: flex-start; }
+      .cert-row { flex-wrap: wrap; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ================================================================
-       NOISE CANVAS — film-grain overlay (rendered in JS)
-       ================================================================ -->
+  <!-- Noise canvas -->
   <canvas id="noise-canvas" aria-hidden="true"></canvas>
 
-  <!-- ================================================================
-       CUSTOM CURSOR (hidden on touch devices via JS)
-       ================================================================ -->
-  <div class="cur-dot" id="curDot"   aria-hidden="true"></div>
+  <!-- Custom cursor -->
+  <div class="cur-dot"  id="curDot"  aria-hidden="true"></div>
   <div class="cur-ring" id="curRing" aria-hidden="true"></div>
 
   <!-- ================================================================
        LOADER
        ================================================================ -->
   <div id="loader" role="status" aria-label="Loading">
-    <!-- PLACEHOLDER: Update initials below -->
-    <div class="loader-mark">YN</div>
+    <div class="loader-mark">HT</div>
     <div class="loader-track"><div class="loader-fill"></div></div>
   </div>
 
@@ -1006,11 +1094,11 @@
        NAV
        ================================================================ -->
   <nav id="nav" aria-label="Primary navigation">
-    <!-- PLACEHOLDER: Replace initials with your own -->
-    <a href="#hero" class="nav-logo">YN<em>.</em></a>
+    <a href="#hero" class="nav-logo">HT<em>.</em></a>
 
     <ul class="nav-list" id="navList">
       <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1026,7 +1114,6 @@
        HERO
        ================================================================ -->
   <section id="hero" aria-label="Introduction">
-    <!-- Background elements -->
     <div class="hero-orbs" aria-hidden="true">
       <div class="orb orb-a"></div>
       <div class="orb orb-b"></div>
@@ -1034,27 +1121,23 @@
     </div>
     <div class="hero-grid" aria-hidden="true"></div>
 
-    <!-- Main content -->
     <div class="hero-body">
-      <!-- PLACEHOLDER: Update role/discipline -->
-      <p class="hero-eyebrow">Full-Stack Developer &amp; Creative Technologist</p>
+      <p class="hero-eyebrow">Software Engineer · Backend, Cloud &amp; IoT Systems</p>
 
       <h1 class="hero-name">
-        <!-- PLACEHOLDER: Replace "Your" with your first name -->
-        <span>Your</span>
-        <!-- PLACEHOLDER: Replace "Name." with your last name + period -->
-        <span class="stroke" id="heroStroke">Name.</span>
+        <span>Harsh</span>
+        <span class="stroke" id="heroStroke">Tamakuwala.</span>
       </h1>
 
-      <!-- PLACEHOLDER: Update the tagline to match your actual voice -->
       <p class="hero-sub">
-        I build things for the web — with obsessive attention to craft,
-        a bias toward performance, and genuine care for the humans using them.
+        I build backend systems and cloud-native infrastructure that hold up
+        under real-world load — from IoT telemetry pipelines on GCP to
+        enterprise network automation at CBC News.
+        Graduating April 2026, Ontario Tech University.
       </p>
 
       <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View Work</a>
-        <!-- PLACEHOLDER: Update href to your resume/CV or contact section -->
+        <a href="#projects" class="btn-primary">View Projects</a>
         <a href="#contact" class="btn-ghost">Get in touch <span>→</span></a>
       </div>
     </div>
@@ -1064,19 +1147,19 @@
       <span class="scroll-label">Scroll</span>
     </div>
 
-    <!-- PLACEHOLDER: Replace stats with your actual numbers -->
+    <!-- Real metrics from CBC internship -->
     <div class="hero-stats" aria-hidden="true">
       <div class="stat">
-        <span class="stat-n">3+</span>
-        <span class="stat-l">Years exp.</span>
+        <span class="stat-n">80%</span>
+        <span class="stat-l">Faster deploys</span>
       </div>
       <div class="stat">
-        <span class="stat-n">20+</span>
-        <span class="stat-l">Projects</span>
+        <span class="stat-n">1000+</span>
+        <span class="stat-l">Devices managed</span>
       </div>
       <div class="stat">
-        <span class="stat-n">∞</span>
-        <span class="stat-l">Coffee</span>
+        <span class="stat-n">$8M+</span>
+        <span class="stat-l">Cost identified</span>
       </div>
     </div>
   </section>
@@ -1095,7 +1178,7 @@
 
       <div class="about-grid">
 
-        <!-- Avatar — PLACEHOLDER: Replace .avatar-box with <img src="photo.jpg" alt="Your Name" /> once you have a photo -->
+        <!-- Replace .avatar-box with <img src="photo.jpg" alt="Harsh Tamakuwala" /> once you have a photo -->
         <div class="about-visual reveal">
           <div class="avatar-wrap">
             <div class="avatar-box">
@@ -1112,47 +1195,45 @@
           </div>
         </div>
 
-        <!-- Bio -->
         <div class="about-text-wrap">
           <div class="about-bio reveal" data-delay="1">
-            <!-- PLACEHOLDER: Replace with your real bio — aim for 2–3 sentences max per paragraph -->
             <p>
-              I'm <strong>Your Name</strong> — a full-stack developer based in
-              <strong>Your City</strong>, currently building at
-              <strong>Company / University</strong>.
-              I care deeply about the intersection of engineering precision and visual craft.
+              I'm <strong>Harsh Tamakuwala</strong> — a Software Engineering student at
+              <strong>Ontario Tech University</strong> specialising in IoT Systems,
+              graduating April 2026. I care about software that operates at infrastructure
+              scale, where reliability and automation aren't optional — they're the baseline.
             </p>
             <p>
-              My work spans production web applications, developer tooling, and the occasional
-              side project that goes way deeper than it was supposed to.
-              I believe great software is felt, not just used.
+              Most recently I interned at <strong>CBC News</strong> as a Network Engineering
+              Intern, where I built Python automation that cut infrastructure deployment time
+              by <strong>80%</strong>, tracked inventory across <strong>1000+ network
+              devices</strong>, and surfaced <strong>$8M+ in cost savings</strong> on a $44M
+              Arista infrastructure project.
             </p>
-            <!-- PLACEHOLDER: Third sentence — your current focus or philosophy -->
             <p>
-              When I'm not shipping, I'm reading about distributed systems,
-              refining my terminal setup, or chasing the problem I don't have
-              the answer to yet.
+              I'm most comfortable at the backend and cloud layer — designing data pipelines,
+              containerised services, and the kind of internal tooling that makes engineering
+              teams dramatically more productive. When I'm not shipping, I'm reading about
+              distributed systems or finding problems I don't have the answer to yet.
             </p>
           </div>
 
           <div class="about-meta reveal" data-delay="2">
-            <!-- PLACEHOLDER: Fill in your actual details below -->
             <div class="meta-item">
               <span class="meta-label">Location</span>
-              <span class="meta-val">Your City, Country</span>
+              <span class="meta-val">Oshawa, ON, Canada</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Status</span>
-              <span class="meta-val">Open to Opportunities</span>
+              <span class="meta-val">Open to New Grad Roles</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Focus</span>
-              <span class="meta-val">Full-Stack / Systems</span>
+              <span class="meta-val">Backend / Cloud / IoT</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Education</span>
-              <!-- PLACEHOLDER: Degree + University -->
-              <span class="meta-val">B.Sc. CS, University</span>
+              <span class="meta-val">B.Eng. Software Engineering + IoT, Ontario Tech</span>
             </div>
           </div>
         </div>
@@ -1163,139 +1244,201 @@
 
 
   <!-- ================================================================
+       EXPERIENCE
+       ================================================================ -->
+  <section id="experience">
+    <div class="section-wrap">
+      <div class="section-head reveal">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Experience</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="exp-list">
+
+        <!-- ── CBC News ─────────────────────────────────────────── -->
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <div class="exp-role">Network Engineering Intern</div>
+            <span class="exp-company">Canadian Broadcasting Corporation (CBC News)</span>
+            <span class="exp-when">2024 — 2025</span>
+            <span class="exp-where">Toronto, ON</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Developed a <strong>Python automation plugin for NetBox</strong> to dynamically allocate Unicast and Multicast IP addresses across enterprise infrastructure.</li>
+            <li>Built a <strong>Django integration</strong> automating configuration deployment between internal systems, NetBox, and Cisco Catalyst Center for <strong>200+ devices</strong>.</li>
+            <li>Implemented <strong>Zero Touch Provisioning (ZTP)</strong> workflows using Python automation, reducing infrastructure deployment time by <strong>80%</strong>.</li>
+            <li>Designed automation scripts tracking inventory and deployment status for <strong>1000+ network devices</strong> using internal APIs.</li>
+            <li>Developed Python-based tooling to validate network configurations and automate error detection across large-scale infrastructure deployments.</li>
+            <li>Performed procurement analysis for Arista infrastructure identifying <strong>$8M+ in cost savings</strong> on a $44M project.</li>
+          </ul>
+        </div>
+
+        <!-- ── Ontario Tech Engineering Society ─────────────────── -->
+        <div class="exp-item reveal" data-delay="1">
+          <div class="exp-meta">
+            <div class="exp-role">Director of Web Operations</div>
+            <span class="exp-company">Ontario Tech Engineering Society</span>
+            <span class="exp-when">2023 — 2024</span>
+            <span class="exp-where">Oshawa, ON</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Led development and deployment of website features supporting engineering student engagement.</li>
+            <li>Introduced structured development workflows improving feature delivery speed by <strong>40%</strong>.</li>
+            <li>Optimised SEO and technical performance resulting in a <strong>20% increase</strong> in organic traffic.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Certifications -->
+      <div style="margin-top: 3.5rem;" class="reveal" data-delay="2">
+        <p style="font-family: var(--f-mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem;">Certifications</p>
+        <div class="cert-row">
+          <div class="cert-icon">AWS</div>
+          <span class="cert-name">Intro to Machine Learning on AWS — AWS Professional Certificate</span>
+          <span class="cert-year">2024</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
        SKILLS
        ================================================================ -->
   <section id="skills">
     <div class="section-wrap">
       <div class="section-head reveal">
-        <span class="section-num">02</span>
+        <span class="section-num">03</span>
         <h2 class="section-title">Skills</h2>
         <div class="section-rule"></div>
       </div>
     </div>
 
-    <!-- Marquee — PLACEHOLDER: Update chip text with your actual skills -->
+    <!-- Marquee ticker -->
     <div class="marquee-stage reveal" aria-label="Skills ticker">
 
-      <!-- Row 1: languages + frontend (scrolls left) -->
+      <!-- Row 1: languages + frameworks (scrolls left) -->
       <div class="marquee-row mrow-l">
         <div class="marquee-belt" id="belt1">
-          <span class="skill-chip hi"><span class="pip"></span>TypeScript</span>
-          <span class="skill-chip"><span class="pip"></span>JavaScript</span>
-          <span class="skill-chip hi"><span class="pip"></span>React</span>
-          <span class="skill-chip"><span class="pip"></span>Next.js</span>
           <span class="skill-chip hi"><span class="pip"></span>Python</span>
-          <span class="skill-chip"><span class="pip"></span>HTML / CSS</span>
-          <span class="skill-chip"><span class="pip"></span>Node.js</span>
-          <span class="skill-chip hi"><span class="pip"></span>Go</span>
-          <span class="skill-chip"><span class="pip"></span>GraphQL</span>
-          <span class="skill-chip"><span class="pip"></span>Rust</span>
-          <span class="skill-chip hi"><span class="pip"></span>SQL</span>
+          <span class="skill-chip"><span class="pip"></span>Java</span>
+          <span class="skill-chip hi"><span class="pip"></span>JavaScript</span>
+          <span class="skill-chip"><span class="pip"></span>SQL</span>
+          <span class="skill-chip"><span class="pip"></span>C++</span>
+          <span class="skill-chip hi"><span class="pip"></span>FastAPI</span>
+          <span class="skill-chip"><span class="pip"></span>Django</span>
+          <span class="skill-chip hi"><span class="pip"></span>Node.js</span>
+          <span class="skill-chip"><span class="pip"></span>Spring Boot</span>
+          <span class="skill-chip"><span class="pip"></span>Kotlin</span>
+          <span class="skill-chip hi"><span class="pip"></span>REST APIs</span>
           <span class="skill-chip"><span class="pip"></span>Bash</span>
-          <!-- Duplicate set for seamless loop -->
-          <span class="skill-chip hi"><span class="pip"></span>TypeScript</span>
-          <span class="skill-chip"><span class="pip"></span>JavaScript</span>
-          <span class="skill-chip hi"><span class="pip"></span>React</span>
-          <span class="skill-chip"><span class="pip"></span>Next.js</span>
+          <!-- Duplicate for seamless loop -->
           <span class="skill-chip hi"><span class="pip"></span>Python</span>
-          <span class="skill-chip"><span class="pip"></span>HTML / CSS</span>
-          <span class="skill-chip"><span class="pip"></span>Node.js</span>
-          <span class="skill-chip hi"><span class="pip"></span>Go</span>
-          <span class="skill-chip"><span class="pip"></span>GraphQL</span>
-          <span class="skill-chip"><span class="pip"></span>Rust</span>
-          <span class="skill-chip hi"><span class="pip"></span>SQL</span>
+          <span class="skill-chip"><span class="pip"></span>Java</span>
+          <span class="skill-chip hi"><span class="pip"></span>JavaScript</span>
+          <span class="skill-chip"><span class="pip"></span>SQL</span>
+          <span class="skill-chip"><span class="pip"></span>C++</span>
+          <span class="skill-chip hi"><span class="pip"></span>FastAPI</span>
+          <span class="skill-chip"><span class="pip"></span>Django</span>
+          <span class="skill-chip hi"><span class="pip"></span>Node.js</span>
+          <span class="skill-chip"><span class="pip"></span>Spring Boot</span>
+          <span class="skill-chip"><span class="pip"></span>Kotlin</span>
+          <span class="skill-chip hi"><span class="pip"></span>REST APIs</span>
           <span class="skill-chip"><span class="pip"></span>Bash</span>
         </div>
       </div>
 
-      <!-- Row 2: tooling + infra (scrolls right) -->
+      <!-- Row 2: cloud + infra (scrolls right) -->
       <div class="marquee-row mrow-r">
         <div class="marquee-belt" id="belt2">
-          <span class="skill-chip"><span class="pip"></span>Docker</span>
           <span class="skill-chip hi"><span class="pip"></span>AWS</span>
+          <span class="skill-chip"><span class="pip"></span>GCP</span>
+          <span class="skill-chip hi"><span class="pip"></span>Docker</span>
           <span class="skill-chip"><span class="pip"></span>Kubernetes</span>
           <span class="skill-chip hi"><span class="pip"></span>PostgreSQL</span>
-          <span class="skill-chip"><span class="pip"></span>Redis</span>
-          <span class="skill-chip"><span class="pip"></span>Terraform</span>
-          <span class="skill-chip hi"><span class="pip"></span>Git</span>
-          <span class="skill-chip"><span class="pip"></span>Linux</span>
-          <span class="skill-chip"><span class="pip"></span>Vercel</span>
+          <span class="skill-chip"><span class="pip"></span>MongoDB</span>
+          <span class="skill-chip"><span class="pip"></span>BigQuery</span>
           <span class="skill-chip hi"><span class="pip"></span>CI / CD</span>
-          <span class="skill-chip"><span class="pip"></span>Figma</span>
-          <span class="skill-chip hi"><span class="pip"></span>Vim</span>
+          <span class="skill-chip"><span class="pip"></span>Jenkins</span>
+          <span class="skill-chip hi"><span class="pip"></span>GitHub Actions</span>
+          <span class="skill-chip"><span class="pip"></span>Linux</span>
+          <span class="skill-chip hi"><span class="pip"></span>Pub / Sub</span>
           <!-- Duplicate -->
-          <span class="skill-chip"><span class="pip"></span>Docker</span>
           <span class="skill-chip hi"><span class="pip"></span>AWS</span>
+          <span class="skill-chip"><span class="pip"></span>GCP</span>
+          <span class="skill-chip hi"><span class="pip"></span>Docker</span>
           <span class="skill-chip"><span class="pip"></span>Kubernetes</span>
           <span class="skill-chip hi"><span class="pip"></span>PostgreSQL</span>
-          <span class="skill-chip"><span class="pip"></span>Redis</span>
-          <span class="skill-chip"><span class="pip"></span>Terraform</span>
-          <span class="skill-chip hi"><span class="pip"></span>Git</span>
-          <span class="skill-chip"><span class="pip"></span>Linux</span>
-          <span class="skill-chip"><span class="pip"></span>Vercel</span>
+          <span class="skill-chip"><span class="pip"></span>MongoDB</span>
+          <span class="skill-chip"><span class="pip"></span>BigQuery</span>
           <span class="skill-chip hi"><span class="pip"></span>CI / CD</span>
-          <span class="skill-chip"><span class="pip"></span>Figma</span>
-          <span class="skill-chip hi"><span class="pip"></span>Vim</span>
+          <span class="skill-chip"><span class="pip"></span>Jenkins</span>
+          <span class="skill-chip hi"><span class="pip"></span>GitHub Actions</span>
+          <span class="skill-chip"><span class="pip"></span>Linux</span>
+          <span class="skill-chip hi"><span class="pip"></span>Pub / Sub</span>
         </div>
       </div>
 
-    </div><!-- /.marquee-stage -->
+    </div>
 
-    <!-- Category cells — PLACEHOLDER: Update tags with your real skills per category -->
     <div class="section-wrap" style="padding-top: 0;">
       <div class="skills-cells reveal">
 
         <div class="skill-cell">
-          <span class="cell-label">Frontend</span>
+          <span class="cell-label">Languages</span>
           <div class="cell-tags">
-            <span class="cell-tag">React</span>
-            <span class="cell-tag">Next.js</span>
-            <span class="cell-tag">TypeScript</span>
-            <span class="cell-tag">CSS / Sass</span>
-            <span class="cell-tag">Framer Motion</span>
-            <span class="cell-tag">Webpack</span>
+            <span class="cell-tag">Python</span>
+            <span class="cell-tag">Java</span>
+            <span class="cell-tag">JavaScript</span>
+            <span class="cell-tag">SQL</span>
+            <span class="cell-tag">C++</span>
+            <span class="cell-tag">Kotlin</span>
+            <span class="cell-tag">Bash</span>
           </div>
         </div>
 
         <div class="skill-cell">
           <span class="cell-label">Backend</span>
           <div class="cell-tags">
+            <span class="cell-tag">FastAPI</span>
+            <span class="cell-tag">Django</span>
             <span class="cell-tag">Node.js</span>
-            <span class="cell-tag">Python</span>
-            <span class="cell-tag">Go</span>
+            <span class="cell-tag">Spring Boot</span>
             <span class="cell-tag">REST APIs</span>
-            <span class="cell-tag">GraphQL</span>
-            <span class="cell-tag">gRPC</span>
           </div>
         </div>
 
         <div class="skill-cell">
-          <span class="cell-label">Data &amp; Storage</span>
-          <div class="cell-tags">
-            <span class="cell-tag">PostgreSQL</span>
-            <span class="cell-tag">Redis</span>
-            <span class="cell-tag">MongoDB</span>
-            <span class="cell-tag">Prisma</span>
-            <span class="cell-tag">Elasticsearch</span>
-          </div>
-        </div>
-
-        <div class="skill-cell">
-          <span class="cell-label">Infrastructure</span>
+          <span class="cell-label">Cloud &amp; DevOps</span>
           <div class="cell-tags">
             <span class="cell-tag">AWS</span>
+            <span class="cell-tag">GCP</span>
             <span class="cell-tag">Docker</span>
-            <span class="cell-tag">K8s</span>
-            <span class="cell-tag">Terraform</span>
-            <span class="cell-tag">CI / CD</span>
-            <span class="cell-tag">Linux</span>
+            <span class="cell-tag">Kubernetes</span>
+            <span class="cell-tag">Jenkins</span>
+            <span class="cell-tag">GH Actions</span>
+          </div>
+        </div>
+
+        <div class="skill-cell">
+          <span class="cell-label">Databases &amp; Data</span>
+          <div class="cell-tags">
+            <span class="cell-tag">PostgreSQL</span>
+            <span class="cell-tag">MySQL</span>
+            <span class="cell-tag">MongoDB</span>
+            <span class="cell-tag">BigQuery</span>
+            <span class="cell-tag">Pub/Sub</span>
+            <span class="cell-tag">Dataflow</span>
           </div>
         </div>
 
       </div>
     </div>
 
-  </section><!-- /#skills -->
+  </section>
 
 
   <!-- ================================================================
@@ -1304,128 +1447,99 @@
   <section id="projects">
     <div class="section-wrap">
       <div class="section-head reveal">
-        <span class="section-num">03</span>
+        <span class="section-num">04</span>
         <h2 class="section-title">Projects</h2>
         <div class="section-rule"></div>
       </div>
 
       <div class="projects-grid">
 
-        <!-- ── PROJECT 1 ────────────────────────────────────────── -->
-        <!-- PLACEHOLDER: Replace all project details below -->
+        <!-- ── PROJECT 1: UEI Cloud Platform ────────────────────── -->
         <div class="project-card reveal">
-          <span class="card-idx">001</span>
-          <!-- PLACEHOLDER: Project 1 name -->
-          <h3 class="card-title">Project Alpha</h3>
-          <!-- PLACEHOLDER: 2–3 sentence project description -->
+          <span class="card-idx">001 — 2026</span>
+          <h3 class="card-title">Unified Energy Interface Cloud Platform</h3>
           <p class="card-desc">
-            A full-stack application that does something genuinely impressive.
-            Built for performance, handling N users with sub-100ms p99 latency.
-            Describe the real problem it solves here.
+            Cloud-native telemetry platform for monitoring distributed battery management
+            systems and solar PV infrastructure in real time. Designed a modular FastAPI
+            ingestion service processing IoT telemetry into time-series PostgreSQL datasets,
+            with fault-tolerant containerised workflows deployed to GCP and Grafana dashboards
+            for live monitoring.
           </p>
           <div class="card-stack">
-            <!-- PLACEHOLDER: Update with your actual stack -->
-            <span class="stack-chip">Next.js</span>
-            <span class="stack-chip">TypeScript</span>
-            <span class="stack-chip">PostgreSQL</span>
-            <span class="stack-chip">AWS</span>
-          </div>
-          <div class="card-links">
-            <!-- PLACEHOLDER: Update href to real GitHub repo -->
-            <a href="#" class="card-link" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-              GitHub
-            </a>
-            <!-- PLACEHOLDER: Update href to real live demo URL -->
-            <a href="#" class="card-link" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-              Live Demo
-            </a>
-          </div>
-        </div>
-
-        <!-- ── PROJECT 2 ────────────────────────────────────────── -->
-        <!-- PLACEHOLDER: Replace all project details below -->
-        <div class="project-card reveal" data-delay="1">
-          <span class="card-idx">002</span>
-          <!-- PLACEHOLDER: Project 2 name -->
-          <h3 class="card-title">Project Beta</h3>
-          <!-- PLACEHOLDER: 2–3 sentence description -->
-          <p class="card-desc">
-            An open-source developer tool that fixes a real workflow pain point.
-            Picked up traction with N GitHub stars and M weekly downloads.
-            Zero-config, blazing fast, and easy to extend.
-          </p>
-          <div class="card-stack">
-            <!-- PLACEHOLDER: Update stack -->
-            <span class="stack-chip">Go</span>
-            <span class="stack-chip">CLI</span>
-            <span class="stack-chip">Docker</span>
-          </div>
-          <div class="card-links">
-            <a href="#" class="card-link" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-              GitHub
-            </a>
-            <a href="#" class="card-link" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-              Live Demo
-            </a>
-          </div>
-        </div>
-
-        <!-- ── PROJECT 3 ────────────────────────────────────────── -->
-        <!-- PLACEHOLDER: Replace all project details below -->
-        <div class="project-card reveal" data-delay="2">
-          <span class="card-idx">003</span>
-          <!-- PLACEHOLDER: Project 3 name -->
-          <h3 class="card-title">Project Gamma</h3>
-          <!-- PLACEHOLDER: 2–3 sentence description -->
-          <p class="card-desc">
-            A machine-learning pipeline that classifies and routes data at scale.
-            Achieved X% accuracy on industry benchmarks with Y ms inference time.
-            Currently used in production by N teams.
-          </p>
-          <div class="card-stack">
-            <!-- PLACEHOLDER: Update stack -->
             <span class="stack-chip">Python</span>
-            <span class="stack-chip">PyTorch</span>
             <span class="stack-chip">FastAPI</span>
-            <span class="stack-chip">Redis</span>
+            <span class="stack-chip">PostgreSQL</span>
+            <span class="stack-chip">Docker</span>
+            <span class="stack-chip">Grafana</span>
+            <span class="stack-chip">GCP</span>
           </div>
           <div class="card-links">
-            <a href="#" class="card-link" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
+            <!-- Update href to your actual GitHub repo for this project -->
+            <a href="https://github.com/harsh-0214" class="card-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
               GitHub
             </a>
+            <!-- Update href to live demo if deployed -->
             <a href="#" class="card-link" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Live Demo
             </a>
           </div>
         </div>
 
-      </div><!-- /.projects-grid -->
+        <!-- ── PROJECT 2: IoT Telemetry Pipeline ─────────────────── -->
+        <div class="project-card reveal" data-delay="1">
+          <span class="card-idx">002 — 2025</span>
+          <h3 class="card-title">Cloud Data Pipeline for IoT Telemetry</h3>
+          <p class="card-desc">
+            Streaming data pipeline that ingests telemetry from distributed IoT devices
+            and transforms it into analytics-ready cloud datasets. Events are published to
+            GCP Pub/Sub topics, processed through Dataflow for transformation, and stored in
+            BigQuery for scalable querying and downstream analytics.
+          </p>
+          <div class="card-stack">
+            <span class="stack-chip">Python</span>
+            <span class="stack-chip">GCP Pub/Sub</span>
+            <span class="stack-chip">Dataflow</span>
+            <span class="stack-chip">BigQuery</span>
+          </div>
+          <div class="card-links">
+            <!-- Update href to your actual GitHub repo for this project -->
+            <a href="https://github.com/harsh-0214" class="card-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- ── PROJECT 3: CBC Network Automation ─────────────────── -->
+        <div class="project-card reveal" data-delay="2">
+          <span class="card-idx">003 — 2024</span>
+          <h3 class="card-title">Enterprise Network Automation Suite</h3>
+          <p class="card-desc">
+            Internal Python + Django tooling built during the CBC News internship to automate
+            network configuration deployment across 200+ Cisco devices, track inventory for
+            1000+ endpoints via NetBox APIs, and implement ZTP workflows — cutting deployment
+            time by 80% and identifying $8M+ in infrastructure cost savings.
+          </p>
+          <div class="card-stack">
+            <span class="stack-chip">Python</span>
+            <span class="stack-chip">Django</span>
+            <span class="stack-chip">NetBox</span>
+            <span class="stack-chip">Cisco APIs</span>
+            <span class="stack-chip">REST APIs</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/harsh-0214" class="card-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </section><!-- /#projects -->
+  </section>
 
 
   <!-- ================================================================
@@ -1434,7 +1548,7 @@
   <section id="contact">
     <div class="section-wrap">
       <div class="section-head reveal">
-        <span class="section-num">04</span>
+        <span class="section-num">05</span>
         <h2 class="section-title">Contact</h2>
         <div class="section-rule"></div>
       </div>
@@ -1447,18 +1561,16 @@
             <span class="ghost">Build</span>
             Together.
           </h3>
-          <!-- PLACEHOLDER: Update blurb to match your availability -->
           <p class="contact-note">
-            Open to full-time roles, freelance engagements, and compelling
-            conversations. If you're working on something that matters, I want
-            to hear about it.
+            Open to new grad roles and internships in backend engineering, cloud
+            infrastructure, and IoT systems — starting April 2026.
+            If you're building something that operates at real scale, I want to hear about it.
           </p>
         </div>
 
         <div class="contact-links-list reveal" data-delay="1">
 
-          <!-- PLACEHOLDER: Replace email address -->
-          <a href="mailto:your@email.com" class="c-link">
+          <a href="mailto:Harsh_2003@hotmail.com" class="c-link">
             <div class="c-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -1467,29 +1579,24 @@
             </div>
             <div class="c-copy">
               <span class="c-cat">Email</span>
-              <!-- PLACEHOLDER: Replace with your email -->
-              <span class="c-val">your@email.com</span>
+              <span class="c-val">Harsh_2003@hotmail.com</span>
             </div>
             <span class="c-arrow">→</span>
           </a>
 
-          <!-- PLACEHOLDER: Replace GitHub username and URL -->
-          <a href="https://github.com/yourusername" class="c-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/harsh-0214" class="c-link" target="_blank" rel="noopener noreferrer">
             <div class="c-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
             </div>
             <div class="c-copy">
               <span class="c-cat">GitHub</span>
-              <!-- PLACEHOLDER: Replace with your GitHub handle -->
-              <span class="c-val">github.com/yourusername</span>
+              <span class="c-val">github.com/harsh-0214</span>
             </div>
             <span class="c-arrow">→</span>
           </a>
 
-          <!-- PLACEHOLDER: Replace LinkedIn URL -->
-          <a href="https://linkedin.com/in/yourprofile" class="c-link" target="_blank" rel="noopener noreferrer">
+          <!-- Update this URL to your actual LinkedIn profile slug -->
+          <a href="https://linkedin.com/in/harsh-tamakuwala" class="c-link" target="_blank" rel="noopener noreferrer">
             <div class="c-icon">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
@@ -1499,23 +1606,21 @@
             </div>
             <div class="c-copy">
               <span class="c-cat">LinkedIn</span>
-              <!-- PLACEHOLDER: Replace with your LinkedIn profile URL -->
-              <span class="c-val">linkedin.com/in/yourprofile</span>
+              <!-- Update slug below to match your actual LinkedIn URL -->
+              <span class="c-val">linkedin.com/in/harsh-tamakuwala</span>
             </div>
             <span class="c-arrow">→</span>
           </a>
 
-          <!-- PLACEHOLDER: Optional — update or remove this block (Twitter/X, Dribbble, etc.) -->
-          <a href="https://twitter.com/yourhandle" class="c-link" target="_blank" rel="noopener noreferrer">
+          <a href="tel:6473330353" class="c-link">
             <div class="c-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.65 2.82a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 5.18 5.18l.99-.88a2 2 0 0 1 2.11-.45c.92.3 1.86.52 2.82.65A2 2 0 0 1 22 16.92z"/>
               </svg>
             </div>
             <div class="c-copy">
-              <span class="c-cat">Twitter / X</span>
-              <!-- PLACEHOLDER: Replace with your Twitter handle -->
-              <span class="c-val">@yourhandle</span>
+              <span class="c-cat">Phone</span>
+              <span class="c-val">647-333-0353</span>
             </div>
             <span class="c-arrow">→</span>
           </a>
@@ -1530,8 +1635,7 @@
        FOOTER
        ================================================================ -->
   <footer>
-    <!-- PLACEHOLDER: Replace with your name and current year -->
-    <span>© 2025 Your Name — Designed &amp; built with intent.</span>
+    <span>© 2026 Harsh Tamakuwala — Designed &amp; built with intent.</span>
     <a href="#hero">Back to top ↑</a>
   </footer>
 
@@ -1542,7 +1646,7 @@
   <script>
     'use strict';
 
-    /* ── Noise canvas ─────────────────────────────────────────────── */
+    /* ── Animated noise grain ────────────────────────────────────── */
     (function renderNoise() {
       const canvas = document.getElementById('noise-canvas');
       const ctx    = canvas.getContext('2d');
@@ -1566,7 +1670,6 @@
         }
         ctx.putImageData(img, 0, 0);
         frame++;
-        // Re-render noise every ~3 frames for a subtle animated grain
         if (frame % 3 === 0) requestAnimationFrame(draw);
         else setTimeout(() => requestAnimationFrame(draw), 80);
       }
@@ -1614,9 +1717,9 @@
 
 
     /* ── Navigation: scroll state + mobile drawer ────────────────── */
-    const nav       = document.getElementById('nav');
-    const burger    = document.getElementById('navBurger');
-    const navList   = document.getElementById('navList');
+    const nav     = document.getElementById('nav');
+    const burger  = document.getElementById('navBurger');
+    const navList = document.getElementById('navList');
 
     window.addEventListener('scroll', () => {
       nav.classList.toggle('stuck', window.scrollY > 40);
@@ -1652,7 +1755,7 @@
 
     /* ── Active nav link on scroll ───────────────────────────────── */
     const navAnchors = document.querySelectorAll('.nav-list a');
-    const sectIds    = ['about', 'skills', 'projects', 'contact'];
+    const sectIds    = ['about', 'experience', 'skills', 'projects', 'contact'];
 
     const activeObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1670,7 +1773,7 @@
     });
 
 
-    /* ── Hero stroke name reveal on load ─────────────────────────── */
+    /* ── Hero stroke reveal on load ──────────────────────────────── */
     setTimeout(() => {
       document.getElementById('heroStroke')?.classList.add('lit');
     }, 1100);
@@ -1683,7 +1786,7 @@
     });
 
 
-    /* ── Smooth scroll polyfill for older Safari ─────────────────── */
+    /* ── Smooth scroll polyfill ──────────────────────────────────── */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
