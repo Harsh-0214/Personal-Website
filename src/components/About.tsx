@@ -1,7 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { personal } from '../data/resume'
-import photo from '../assets/photo.jpg'
+import photo from '../assets/image-1780262826955.jpg'
 
 /* Shared editorial section header used by all sections */
 export function SectionHead({ num, title }: { num: string; title: string }) {
