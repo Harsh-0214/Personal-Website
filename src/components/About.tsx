@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { personal } from '../data/resume'
+import photo from '../assets/photo.jpg'
 
 /* Shared editorial section header used by all sections */
 export function SectionHead({ num, title }: { num: string; title: string }) {
@@ -49,29 +50,16 @@ export default function About() {
 
           {/* Left: Avatar + quick facts */}
           <motion.div {...reveal(0.1)} animate={inView ? reveal(0.1).animate : reveal(0.1).initial}>
-            {/* Photo placeholder */}
+            {/* Photo */}
             <div className="relative aspect-[3/4] bg-surface border border-line overflow-hidden mb-6 max-w-[220px] md:max-w-none">
-              {/* Warm grid */}
-              <div
-                className="absolute inset-0 opacity-50"
-                style={{
-                  backgroundImage:
-                    'repeating-linear-gradient(0deg,transparent,transparent 44px,rgb(var(--c-line)) 44px,rgb(var(--c-line)) 45px),' +
-                    'repeating-linear-gradient(90deg,transparent,transparent 44px,rgb(var(--c-line)) 44px,rgb(var(--c-line)) 45px)',
-                }}
+              <img
+                src={photo}
+                alt={personal.name}
+                className="absolute inset-0 w-full h-full object-cover object-top"
               />
               {/* Corner brackets */}
               <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-rust/50" />
               <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-rust/50" />
-              {/* Placeholder silhouette */}
-              <div className="absolute inset-0 flex items-end justify-center pb-6">
-                <svg viewBox="0 0 24 24" className="w-20 h-20 text-line" fill="currentColor">
-                  <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-                </svg>
-              </div>
-              <span className="absolute bottom-3 left-3 font-sans text-[0.55rem] text-dim/60 tracking-wider">
-                photo.jpg
-              </span>
             </div>
 
             {/* Quick facts */}
