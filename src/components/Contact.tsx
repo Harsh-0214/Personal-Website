@@ -16,7 +16,7 @@ const contactItems = [
   },
   {
     label: 'LinkedIn',
-    value: 'linkedin.com/in/harsh-tamakuwala',
+    value: 'linkedin.com/in/harshtamakuwala',
     href: personal.linkedin,
   },
   {

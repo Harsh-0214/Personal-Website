@@ -10,7 +10,7 @@ export const personal = {
   email: 'Harsh_2003@hotmail.com',
   phone: '647-333-0353',
   github: 'https://github.com/harsh-0214',
-  linkedin: 'https://linkedin.com/in/harsh-tamakuwala',
+  linkedin: 'https://www.linkedin.com/in/harshtamakuwala/',
   education: 'B.Eng. Software Eng. + IoT',
   school: 'Ontario Tech University',
   graduation: 'Expected Apr 2026',
