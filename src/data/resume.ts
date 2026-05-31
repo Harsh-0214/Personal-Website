@@ -81,7 +81,7 @@ export const certifications = [
     issuer: 'Amazon Web Services',
     year: '2024',
     status: 'Completed' as const,
-    description: 'Covers foundational ML concepts and core AWS ML services — SageMaker, Rekognition, Comprehend, and Forecast — with hands-on exercises through Coursera.',
+    description: 'Hands-on with AWS AI/ML services — built conversational interfaces with Amazon Lex, automated speech-to-text with Transcribe, real-time language translation with Translate, and managed training data and model artefacts via S3.',
   },
   {
     name: 'AWS Certified Solutions Architect – Associate',
