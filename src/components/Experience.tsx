@@ -104,29 +104,46 @@ export default function Experience() {
           ))}
         </div>
 
-        {/* Certifications */}
+        {/* Credentials */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.45, duration: 0.75 }}
           className="mt-12 md:mt-16"
         >
-          <p className="font-sans text-[0.62rem] uppercase tracking-[0.2em] text-dim mb-5">Certifications</p>
-          {certifications.map((c, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-4 border border-line px-5 py-4 hover:border-rust/50 hover:bg-surface transition-all duration-250 group rounded-sm"
-            >
-              <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-rust/10 border border-rust/20 font-sans text-[0.52rem] font-semibold text-rust tracking-wider rounded-sm">
-                AWS
+          <p className="font-sans text-[0.62rem] uppercase tracking-[0.2em] text-dim mb-5">Credentials</p>
+          <div className="space-y-3">
+            {certifications.map((c, i) => (
+              <div
+                key={i}
+                className="border border-line px-5 py-4 hover:border-rust/50 hover:bg-surface transition-all duration-250 group rounded-sm"
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`w-10 h-10 flex-shrink-0 flex items-center justify-center border font-sans text-[0.52rem] font-semibold tracking-wider rounded-sm ${
+                    c.abbr === 'GCP'
+                      ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'
+                      : 'bg-rust/10 border-rust/20 text-rust'
+                  }`}>
+                    {c.abbr}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                      <p className="font-sans font-medium text-[0.88rem] text-ink group-hover:text-rust transition-colors">{c.name}</p>
+                      <span className={`font-sans text-[0.58rem] uppercase tracking-[0.15em] px-1.5 py-0.5 rounded-sm border ${
+                        c.status === 'Completed'
+                          ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10'
+                          : 'text-amber-400 border-amber-400/30 bg-amber-400/10'
+                      }`}>
+                        {c.status}
+                      </span>
+                    </div>
+                    <p className="font-sans text-[0.65rem] text-dim mb-2">{c.issuer} · {c.year}</p>
+                    <p className="font-sans text-[0.78rem] text-mid leading-relaxed">{c.description}</p>
+                  </div>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-sans font-medium text-[0.88rem] text-ink group-hover:text-rust transition-colors truncate">{c.name}</p>
-                <p className="font-sans text-[0.65rem] text-dim">{c.issuer}</p>
-              </div>
-              <span className="font-sans text-[0.65rem] text-dim flex-shrink-0">{c.year}</span>
-            </div>
-          ))}
+            ))}
+          </div>
         </motion.div>
 
       </div>

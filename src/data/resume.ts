@@ -75,7 +75,30 @@ export const experience = [
 ];
 
 export const certifications = [
-  { name: 'Intro to Machine Learning on AWS', issuer: 'AWS Professional Certificate', year: '2024' },
+  {
+    name: 'Intro to Machine Learning on AWS',
+    abbr: 'AWS',
+    issuer: 'Amazon Web Services',
+    year: '2024',
+    status: 'Completed' as const,
+    description: 'Covers foundational ML concepts and core AWS ML services — SageMaker, Rekognition, Comprehend, and Forecast — with hands-on exercises through Coursera.',
+  },
+  {
+    name: 'AWS Certified Solutions Architect – Associate',
+    abbr: 'AWS',
+    issuer: 'Amazon Web Services',
+    year: '2025',
+    status: 'In Progress' as const,
+    description: 'Validates ability to design resilient, cost-optimised architectures on AWS. Covers EC2, S3, RDS, VPC, IAM, Lambda, and CloudFormation at associate level (SAA-C03).',
+  },
+  {
+    name: 'Google Cloud Professional Cloud Engineer',
+    abbr: 'GCP',
+    issuer: 'Google Cloud',
+    year: '2025',
+    status: 'In Progress' as const,
+    description: 'Demonstrates ability to deploy and manage production workloads on GCP — Compute Engine, GKE, Cloud Storage, BigQuery, Pub/Sub, and IAM policy design.',
+  },
 ];
 
 export const projects = [
