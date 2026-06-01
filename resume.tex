@@ -1,0 +1,210 @@
+%-------------------------
+% Harsh Tamakuwala — Resume
+% LaTeX Template
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{multicol}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{#1 \vspace{-2pt}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+  {\Huge \scshape Harsh Tamakuwala} \\[6pt]
+  \small
+  Oshawa, ON, Canada \quad $|$ \quad
+  \href{mailto:Harsh\_2003@hotmail.com}{Harsh\_2003@hotmail.com} \quad $|$ \quad
+  647-333-0353 \\[2pt]
+  \href{https://www.linkedin.com/in/harshtamakuwala/}{linkedin.com/in/harshtamakuwala} \quad $|$ \quad
+  \href{https://github.com/harsh-0214}{github.com/harsh-0214}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+Backend and cloud-native engineer with hands-on experience building IoT telemetry pipelines on GCP, enterprise network automation at CBC News, and full-stack web applications. Graduating April 2026 with a B.Eng. in Software Engineering + IoT. Open to new grad roles in backend, cloud, or infrastructure engineering.
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Ontario Tech University}{Oshawa, ON}
+    {Bachelor of Engineering, Software Engineering + Internet of Things}{Expected Apr 2026}
+\resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Network Engineering Intern}{2024 -- 2025}
+    {Canadian Broadcasting Corporation (CBC News)}{Toronto, ON}
+    \resumeItemListStart
+      \resumeItem{Developed a Python automation plugin for NetBox to dynamically allocate Unicast and Multicast IP addresses across enterprise infrastructure.}
+      \resumeItem{Built a Django integration automating configuration deployment between internal systems, NetBox, and Cisco Catalyst Center for 200+ devices.}
+      \resumeItem{Implemented Zero Touch Provisioning (ZTP) workflows using Python automation, reducing infrastructure deployment time by 80\%.}
+      \resumeItem{Designed automation scripts tracking inventory and deployment status for 1000+ network devices using internal APIs.}
+      \resumeItem{Developed Python-based tooling to validate network configurations and automate error detection across large-scale infrastructure deployments.}
+      \resumeItem{Performed procurement analysis for Arista infrastructure identifying \$8M+ in cost savings on a \$44M project.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Director of Web Operations}{2023 -- 2024}
+    {Ontario Tech Engineering Society}{Oshawa, ON}
+    \resumeItemListStart
+      \resumeItem{Led development and deployment of website features supporting engineering student engagement.}
+      \resumeItem{Introduced structured development workflows improving feature delivery speed by 40\%.}
+      \resumeItem{Optimised SEO and technical performance resulting in a 20\% increase in organic traffic.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{Unified Energy Interface Cloud Platform} $|$ \emph{Python, FastAPI, PostgreSQL, Docker, GCP, Grafana}}{2026}
+    \resumeItemListStart
+      \resumeItem{Cloud-native telemetry platform for monitoring distributed battery management systems and solar PV infrastructure in real time.}
+      \resumeItem{Designed a modular FastAPI ingestion service processing IoT telemetry into time-series PostgreSQL datasets with Grafana dashboards for live monitoring.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Cloud Data Pipeline for IoT Telemetry} $|$ \emph{Python, GCP Pub/Sub, Dataflow, BigQuery}}{2025}
+    \resumeItemListStart
+      \resumeItem{Streaming data pipeline ingesting telemetry from distributed IoT devices, processed through Dataflow, and stored in BigQuery for scalable analytics.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Clutch — Life Organisation Mobile App} $|$ \emph{React Native, Expo, TypeScript}}{2025}
+    \resumeItemListStart
+      \resumeItem{Dark-mode React Native app with five integrated modules: habit streak tracking, body stats, markdown notes, calendar with push notifications, and a 30-day heatmap.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{CodeLocked — Dev Knowledge Base} $|$ \emph{Next.js, TypeScript, Supabase, PostgreSQL}}{2025}
+    \resumeItemListStart
+      \resumeItem{Personal engineering wiki built with Next.js 15 and Supabase; lessons captured automatically from AI conversations and stored with difficulty, category, and key takeaways.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Distributed Air Traffic Controller} $|$ \emph{Java, Distributed Systems}}{2024}
+    \resumeItemListStart
+      \resumeItem{Distributed systems simulation of an air traffic control environment modelling concurrent aircraft coordination, inter-node communication, and fault tolerance.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Airport Database Management System} $|$ \emph{JavaScript, SQL, REST APIs, HTML/CSS}}{2024}
+    \resumeItemListStart
+      \resumeItem{Full-stack airport management system with a normalised relational database, REST/JSON API, and web frontend rendering live SQL views in tabular format.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages:}     Python, Java, JavaScript, SQL, C++, C, Kotlin, PHP, Bash \\[2pt]
+    \textbf{Backend:}       FastAPI, Django, Node.js, Spring Boot, REST APIs \\[2pt]
+    \textbf{Cloud \& DevOps:} AWS, GCP, Docker, Kubernetes, CI/CD, Jenkins, GitHub Actions \\[2pt]
+    \textbf{Databases:}     PostgreSQL, MySQL, MongoDB, BigQuery, Pub/Sub, Dataflow \\[2pt]
+    \textbf{Tools:}         Git, Linux, Postman, Jira, Figma, NetBox
+  }}
+\end{itemize}
+
+%-----------CREDENTIALS-----------
+\section{Credentials}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{Intro to Machine Learning on AWS} $|$ \emph{Amazon Web Services}}{2024}
+    \resumeItemListStart
+      \resumeItem{Hands-on with Amazon Lex, Transcribe, Translate, and S3 for AI/ML service integration.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{AWS Certified Solutions Architect -- Associate (SAA-C03)} $|$ \emph{Amazon Web Services}}{In Progress}
+    \resumeItemListStart
+      \resumeItem{Covers resilient, cost-optimised architecture design on AWS: EC2, S3, RDS, VPC, IAM, Lambda, and CloudFormation.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Google Cloud Professional Cloud Engineer} $|$ \emph{Google Cloud}}{In Progress}
+    \resumeItemListStart
+      \resumeItem{Covers deploying and managing production workloads on GCP: Compute Engine, GKE, BigQuery, Pub/Sub, and IAM.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document}
